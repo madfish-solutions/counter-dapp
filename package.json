@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@taquito/taquito": "6.3.0-wallet.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "promise-retry": "^1.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -14,7 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "wait-for-sandbox": "node ./scripts/sandbox/waitForNetwork.js",
+    "start-sandbox": "bash ./scripts/sandbox/start_sandbox.sh && npm run wait-for-sandbox",
+    "kill-sandbox": "bash ./scripts/sandbox/kill_sandbox.sh",
+    "restart-sandbox": "npm run kill-sandbox && npm run start-sandbox"
   },
   "eslintConfig": {
     "extends": "react-app"
