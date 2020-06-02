@@ -3,20 +3,20 @@ import constate from 'constate';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 
 export const [
-  TezosProvider,
+  DAppProvider,
   useWallet,
   useTezos,
   useReady,
   useConnect,
 ] = constate(
-  useInfra,
+  useDApp,
   (v) => v.wallet,
   (v) => v.tezos,
   (v) => v.ready,
   (v) => v.connect
 );
 
-function useInfra({ appName }) {
+function useDApp({ appName }) {
   const [wallet, setWallet] = React.useState(null);
   const [tezos, setTezos] = React.useState(null);
   const ready = Boolean(tezos);

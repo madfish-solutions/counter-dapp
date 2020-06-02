@@ -2,7 +2,7 @@ import React from 'react';
 import './Counter.css';
 
 import usePromise from 'react-promise-suspense';
-import { useTezos, useOnBlock } from './tezos';
+import { useTezos, useOnBlock } from './dapp';
 
 const fetchContract = (tezos, address) => tezos.wallet.at(address);
 
@@ -55,12 +55,8 @@ function Counter({ contractAddress }) {
 
   const handleVolumeFieldChange = React.useCallback(
     (evt) => {
-      const valNum = +evt.target.value.split('.')[0];
-      if (
-        !isNaN(valNum) &&
-        valNum >= -Number.MAX_SAFE_INTEGER &&
-        valNum < Number.MAX_SAFE_INTEGER
-      ) {
+      const valNum = +evt.target.value;
+      if (Number.isSafeInteger(valNum)) {
         setVolume(valNum);
       }
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TezosProvider, useReady, useWallet, useConnect } from './tezos';
+import { DAppProvider, useReady, useWallet, useConnect } from './dapp';
 import Counter from './Counter';
 
 const APP_NAME = 'Counter dApp';
@@ -9,11 +9,11 @@ const COUNTER_ADDRESS = 'KT1DjYkruvfujfKw6nLYafArqKufcwHuKXvT';
 
 function App() {
   return (
-    <TezosProvider appName={APP_NAME}>
+    <DAppProvider appName={APP_NAME}>
       <React.Suspense fallback={null}>
         <PageRouter />
       </React.Suspense>
-    </TezosProvider>
+    </DAppProvider>
   );
 }
 
@@ -34,7 +34,12 @@ function PageRouter() {
 
   return (
     <div
-      style={{ padding: '1rem', margin: '1rem auto', maxWidth: '960px', minHeight: '300px' }}
+      style={{
+        padding: '1rem',
+        margin: '1rem auto',
+        maxWidth: '960px',
+        minHeight: '300px',
+      }}
       className="nes-container with-title is-centered"
     >
       <p className="title">Example Counter DApp</p>
@@ -43,7 +48,9 @@ function PageRouter() {
           {ready ? (
             <Counter contractAddress={COUNTER_ADDRESS} />
           ) : (
-            <button onClick={handleConnect} className="nes-btn">Connect to ThanosWallet</button>
+            <button onClick={handleConnect} className="nes-btn">
+              Connect to ThanosWallet
+            </button>
           )}
         </>
       ) : (
