@@ -1509,10 +1509,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
-"@thanos-wallet/dapp@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@thanos-wallet/dapp/-/dapp-0.4.0.tgz#d692cf0e0a78b6ec6fbf486764f9e63c70a0175b"
-  integrity sha512-+v7eS7PWWpWsV+INTzyL9eXhExYEjNOG9SqKtEndH9ehZV2hHFG5zZnXmFTarkpoC263CPX204shMDjyXDngfg==
+"@thanos-wallet/dapp@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@thanos-wallet/dapp/-/dapp-0.4.1.tgz#21d0e0f57dc643a662efdd8b6294792aaf5da457"
+  integrity sha512-ddDfOItSuMiDyX6ik9btL/ZVNVCQNVDTtE4vfbLnaHI01fyg2beAo/KxJH25HwP2rqA7YckReNUZJ8rRrBdP/Q==
   dependencies:
     nanoid "^3.1.9"
 

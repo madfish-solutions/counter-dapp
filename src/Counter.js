@@ -55,7 +55,14 @@ function Counter({ contractAddress }) {
 
   const handleVolumeFieldChange = React.useCallback(
     (evt) => {
-      setVolume(+evt.target.value);
+      const valNum = +evt.target.value.split('.')[0];
+      if (
+        !isNaN(valNum) &&
+        valNum >= -Number.MAX_SAFE_INTEGER &&
+        valNum < Number.MAX_SAFE_INTEGER
+      ) {
+        setVolume(valNum);
+      }
     },
     [setVolume]
   );
@@ -73,15 +80,31 @@ function Counter({ contractAddress }) {
   const count = storage;
 
   return (
-    <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'space-around', minHeight: 300}}>
+    <div
+      style={{
+        display: 'flex',
+        flexFlow: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        minHeight: 300,
+      }}
+    >
       <div className="nes-badge is-splited" href="#">
         <span className="is-success">Count: </span>
         <span className="is-primary">{count}</span>
       </div>
 
-      <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'space-around', minHeight: 200 }}>
+      <div
+        style={{
+          display: 'flex',
+          flexFlow: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          minHeight: 200,
+        }}
+      >
         <div className="nes-field is-inline">
-          <label for="warning_field">Value: </label>
+          <label htmlFor="warning_field">Value: </label>
           <input
             id="warning_field"
             className="nes-input is-warning"
@@ -93,11 +116,19 @@ function Counter({ contractAddress }) {
         </div>
 
         <div className="nes-field">
-          <button type="button" className="nes-btn" onClick={handleIncrementClick}>
+          <button
+            type="button"
+            className="nes-btn"
+            onClick={handleIncrementClick}
+          >
             Increment
           </button>
 
-          <button type="button" className="nes-btn" onClick={handleDecrementClick}>
+          <button
+            type="button"
+            className="nes-btn"
+            onClick={handleDecrementClick}
+          >
             Decrement
           </button>
         </div>
