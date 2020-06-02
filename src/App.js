@@ -33,13 +33,17 @@ function PageRouter() {
   }, [connect]);
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div
+      style={{ padding: '1rem', margin: '1rem auto', maxWidth: '960px', minHeight: '300px' }}
+      className="nes-container with-title is-centered"
+    >
+      <p className="title">Example Counter DApp</p>
       {wallet ? (
         <>
           {ready ? (
             <Counter contractAddress={COUNTER_ADDRESS} />
           ) : (
-            <button onClick={handleConnect}>Connect to ThanosWallet</button>
+            <button onClick={handleConnect} className="nes-btn">Connect to ThanosWallet</button>
           )}
         </>
       ) : (

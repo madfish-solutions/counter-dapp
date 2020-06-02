@@ -73,23 +73,34 @@ function Counter({ contractAddress }) {
   const count = storage;
 
   return (
-    <div>
-      <p>Count: {count}</p>
+    <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'space-around', minHeight: 300}}>
+      <div className="nes-badge is-splited" href="#">
+        <span className="is-success">Count: </span>
+        <span className="is-primary">{count}</span>
+      </div>
 
-      <div>
-        <input
-          type="number"
-          value={volume}
-          onChange={handleVolumeFieldChange}
-        />
+      <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'space-around', minHeight: 200 }}>
+        <div className="nes-field is-inline">
+          <label for="warning_field">Value: </label>
+          <input
+            id="warning_field"
+            className="nes-input is-warning"
+            placeholder="8bit.css"
+            type="text"
+            value={volume}
+            onChange={handleVolumeFieldChange}
+          />
+        </div>
 
-        <button type="button" onClick={handleIncrementClick}>
-          Increment
-        </button>
+        <div className="nes-field">
+          <button type="button" className="nes-btn" onClick={handleIncrementClick}>
+            Increment
+          </button>
 
-        <button type="button" onClick={handleDecrementClick}>
-          Decrement
-        </button>
+          <button type="button" className="nes-btn" onClick={handleDecrementClick}>
+            Decrement
+          </button>
+        </div>
       </div>
 
       {operation && <p>Operation hash: {operation.opHash}</p>}
