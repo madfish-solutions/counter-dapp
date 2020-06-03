@@ -24,8 +24,9 @@ function useDApp({ appName }) {
   React.useEffect(() => {
     return ThanosWallet.onAvailabilityChange((available) => {
       setWallet(available ? new ThanosWallet(appName) : null);
+      setTezos(null);
     });
-  }, [setWallet, appName]);
+  }, [setWallet, setTezos, appName]);
 
   const connect = React.useCallback(
     async (network, opts) => {
