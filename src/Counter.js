@@ -85,7 +85,11 @@ function Counter({ contractAddress }) {
         minHeight: 300,
       }}
     >
-      <div className="nes-badge is-splited" href="#">
+      <div
+        className="nes-badge is-splited"
+        href="#"
+        style={{ transform: 'scale(1.5)', marginTop: '1rem', minWidth: '64%' }}
+      >
         <span className="is-success">Count: </span>
         <span className="is-primary">{count}</span>
       </div>

@@ -6,27 +6,36 @@ export const [
   DAppProvider,
   useWallet,
   useTezos,
+  useAccountPkh,
   useReady,
   useConnect,
 ] = constate(
   useDApp,
   (v) => v.wallet,
   (v) => v.tezos,
+  (v) => v.accountPkh,
   (v) => v.ready,
   (v) => v.connect
 );
 
 function useDApp({ appName }) {
-  const [wallet, setWallet] = React.useState(null);
-  const [tezos, setTezos] = React.useState(null);
+  const [{ wallet, tezos, accountPkh }, setState] = React.useState(() => ({
+    wallet: null,
+    tezos: null,
+    accountPkh: null,
+  }));
+
   const ready = Boolean(tezos);
 
   React.useEffect(() => {
     return ThanosWallet.onAvailabilityChange((available) => {
-      setWallet(available ? new ThanosWallet(appName) : null);
-      setTezos(null);
+      setState({
+        wallet: available ? new ThanosWallet(appName) : null,
+        tezos: null,
+        accountPkh: null,
+      });
     });
-  }, [setWallet, setTezos, appName]);
+  }, [setState, appName]);
 
   const connect = React.useCallback(
     async (network, opts) => {
@@ -35,17 +44,24 @@ function useDApp({ appName }) {
           throw new Error('Thanos Wallet not available');
         }
         await wallet.connect(network, opts);
-        setTezos(wallet.toTezos());
+        const tzs = wallet.toTezos();
+        const pkh = await tzs.wallet.pkh();
+        setState({
+          wallet,
+          tezos: tzs,
+          accountPkh: pkh,
+        });
       } catch (err) {
         alert(`Failed to connect ThanosWallet: ${err.message}`);
       }
     },
-    [wallet, setTezos]
+    [setState, wallet]
   );
 
   return {
     wallet,
     tezos,
+    accountPkh,
     ready,
     connect,
   };
