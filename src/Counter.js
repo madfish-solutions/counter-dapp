@@ -41,14 +41,20 @@ function Counter({ contractAddress }) {
   const [volume, setVolume] = React.useState(1);
   const [operation, setOperation] = React.useState(null);
 
+  const processingRef = React.useRef(false);
   const processOperation = React.useCallback(
     async (factory) => {
+      if (processingRef.current) return;
+      processingRef.current = true;
+
       try {
         const op = await factory();
         setOperation(op);
       } catch (err) {
         alert(err.message);
       }
+
+      processingRef.current = false;
     },
     [setOperation]
   );
