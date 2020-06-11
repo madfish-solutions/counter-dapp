@@ -1,12 +1,9 @@
 import React from 'react';
 
+import { APP_NAME, NETWORK, COUNTER_ADDRESS } from './defaults';
 import { DAppProvider, useReady, useWallet, useConnect } from './dapp';
 import Account from './Account';
 import Counter from './Counter';
-
-const APP_NAME = 'Counter dApp';
-const NETWORK = 'carthagenet';
-const COUNTER_ADDRESS = 'KT1DjYkruvfujfKw6nLYafArqKufcwHuKXvT';
 
 function App() {
   return (

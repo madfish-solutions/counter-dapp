@@ -1,8 +1,7 @@
 import React from 'react';
 
+import { NETWORK } from './defaults';
 import { useTezos, useAccountPkh, useConnect, useOnBlock } from './dapp';
-
-const NETWORK = 'carthagenet';
 
 function Account() {
   const tezos = useTezos();
