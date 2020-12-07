@@ -28,14 +28,42 @@ function useDApp({ appName }) {
   const ready = Boolean(tezos);
 
   React.useEffect(() => {
-    return ThanosWallet.onAvailabilityChange((available) => {
-      setState({
-        wallet: available ? new ThanosWallet(appName) : null,
-        tezos: null,
-        accountPkh: null,
-      });
+    return ThanosWallet.onAvailabilityChange(async (available) => {
+      if (available) {
+        let perm;
+        try {
+          perm = await ThanosWallet.getCurrentPermission();
+        } catch {}
+
+        const wlt = new ThanosWallet(appName, perm);
+        setState({
+          wallet: wlt,
+          tezos: wlt.connected ? wlt.toTezos() : null,
+          accountPkh: wlt.connected ? await wlt.getPKH() : null,
+        });
+      } else {
+        setState({
+          wallet: null,
+          tezos: null,
+          accountPkh: null,
+        });
+      }
     });
-  }, [setState, appName]);
+  }, [appName, setState]);
+
+  React.useEffect(() => {
+    if (wallet && wallet.connected) {
+      return ThanosWallet.onPermissionChange((perm) => {
+        if (!perm) {
+          setState({
+            wallet: new ThanosWallet(appName),
+            tezos: null,
+            accountPkh: null,
+          });
+        }
+      });
+    }
+  }, [wallet, appName, setState]);
 
   const connect = React.useCallback(
     async (network, opts) => {

@@ -48,14 +48,14 @@ function Account() {
       <p className="title">Account</p>
 
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-        <span class="nes-text is-primary" style={{ marginLeft: '1rem' }}>
+        <span className="nes-text is-primary" style={{ marginLeft: '1rem' }}>
           {balance} XTZ
         </span>
         <div style={{ flex: 1 }} />
-        <span class="nes-text">{accountPkhPreview}</span>
+        <span className="nes-text">{accountPkhPreview}</span>
         <button
           type="button"
-          class="nes-btn is-primary"
+          className="nes-btn is-primary"
           style={{ marginLeft: '1rem' }}
           onClick={handleNewConnect}
         >
