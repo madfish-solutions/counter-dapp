@@ -57,19 +57,19 @@ npm run restart-sandbox
 - A test faucet key can be obtained from https://faucet.tzalpha.net/. Once saved, it can be imported inside `truffle-config.js`:
 
   ```javascript
-  const { mnemonic, secret, password, email } = require("./faucet.json");
+  const { mnemonic, secret, password, email } = require('./faucet.json');
 
   module.exports = {
     networks: {
-      carthagenet: {
-        host: "https://carthagenet.smartpy.io",
+      delphinet: {
+        host: 'https://delphinet.smartpy.io',
         port: 443,
-        network_id: "*",
+        network_id: '*',
         secret,
         mnemonic,
         password,
         email,
-        type: "tezos",
+        type: 'tezos',
       },
     },
   };
@@ -80,20 +80,20 @@ npm run restart-sandbox
   ```javascript
   module.exports = {
     networks: {
-      carthagenet: {
-        host: "https://carthagenet.smartpy.io",
+      delphinet: {
+        host: 'https://delphinet.smartpy.io',
         port: 443,
-        network_id: "*",
-        secretKey: "edsk...", // private key
-        type: "tezos",
+        network_id: '*',
+        secretKey: 'edsk...', // private key
+        type: 'tezos',
       },
     },
   };
   ```
 
   ```shell
-  truffle migrate --network carthagenet
-  truffle test --network carthagenet
+  truffle migrate --network delphinet
+  truffle test --network delphinet
   ```
 
 ## React App Scripts
